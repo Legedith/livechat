@@ -1,4 +1,5 @@
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -7,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Live Chat',
       home: Scaffold(
         appBar: AppBar(
@@ -16,20 +18,20 @@ class MyApp extends StatelessWidget {
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new RaisedButton(
-                child: Text("Create Session"),
-                elevation: 5.0,
-                onPressed: () {
-                  // Do something here
-                },
-              ),
-              new RaisedButton(
-                child: Text("Join Session"),
-                elevation: 5.0,
-                onPressed: () {
-                  // Do something here
-                },
-              ),
+          TextField(
+          decoration: InputDecoration(
+
+              hintText: 'start chatting'
+          ),
+            onChanged: (text) {
+              print("First text field: $text");
+              FirebaseDatabase.instance.reference().child('recent').child('id')
+                  .set({
+                'title': text
+
+              });
+            },
+        ),
 
             ],
           ),
