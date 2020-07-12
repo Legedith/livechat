@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
           ),
             onChanged: (text) {
               print("First text field: $text");
-              FirebaseDatabase.instance.reference().child('recent').child('id')
+              FirebaseDatabase.instance.reference()
                   .set({
-                'title': text
+                'Text user 1': text
 
               });
             },
